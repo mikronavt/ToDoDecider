@@ -17,6 +17,10 @@ public class Task implements Comparable<Task>{
     private int randomIndex;
     private int priority;
 
+    public Task(String name) {
+        this.name = name;
+    }
+
     public void updatePriority(){
         priority = 0;
     }
@@ -25,5 +29,9 @@ public class Task implements Comparable<Task>{
     @Override
     public int compareTo(Task t) {
         return this.priority - t.priority;
+    }
+
+    public String getName() {
+        return name;
     }
 }
