@@ -16,6 +16,7 @@ public class Task implements Comparable<Task>{
     private Task topTask;
     private List<Task> subTasks;
     private int randomIndex;
+    private Task lockedBy;// добавить логику что если задача заблокирована, то вместо нее автоматом выплывает локер
     private int priority;
 
     public Task(String name) {
