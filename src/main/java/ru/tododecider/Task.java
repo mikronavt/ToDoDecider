@@ -13,6 +13,7 @@ public class Task implements Comparable<Task>{
     private int postponed;
     private String theme; //or enum?
     private String comments;
+    private Task topTask;
     private List<Task> subTasks;
     private int randomIndex;
     private int priority;
