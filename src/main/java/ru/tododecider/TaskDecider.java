@@ -2,17 +2,14 @@ package ru.tododecider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class TaskDecider {
-    private List<Task> allTasks = new ArrayList<>(); // or queue? or set?
+    private Queue<Task> allTasks = new PriorityQueue<>(); // or queue? or set?
 
     public Task getTopTask(){
-        if(allTasks.isEmpty()) {
-            System.out.println("Нет свободных задач");
-            return null;
-        } else {
-            return allTasks.get(0);
-        }
+        return allTasks.peek();
     }
 
     public void addTask(Task t) {
@@ -20,21 +17,17 @@ public class TaskDecider {
     }
 
     public void executeTopTask(){
-        if(!allTasks.isEmpty()) {
-            allTasks.remove(0);
-        }
+        allTasks.poll();
     }
 
     public void cancelTopTask(){
-        if(!allTasks.isEmpty()) {
-            allTasks.remove(0);
-        }
+        allTasks.poll();
     }
 
     public void postponeTopTask(){
         if(!allTasks.isEmpty()) {
             Task top = getTopTask();
-            allTasks.remove(0);
+            allTasks.poll();
             allTasks.add(top);
         }
     }
