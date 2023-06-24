@@ -1,4 +1,4 @@
-package ru.tododecider;
+package ru.tododecider.model;
 
 import lombok.Getter;
 
