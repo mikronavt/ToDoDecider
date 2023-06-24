@@ -7,7 +7,7 @@ import java.util.Queue;
 
 @Component
 public class TaskDecider {
-    private Queue<Task> allTasks = new PriorityQueue<>(); // or queue? or set?
+    private Queue<Task> allTasks = new PriorityQueue<>();
 
 
     public Task getTopTask(){
@@ -26,11 +26,13 @@ public class TaskDecider {
         allTasks.poll();
     }
 
+    public boolean noTasks(){
+        return allTasks.isEmpty();
+    }
+
     public void postponeTopTask(){
-        if(!allTasks.isEmpty()) {
-            Task top = getTopTask();
-            allTasks.poll();
-            allTasks.add(top);
+        if(!noTasks()) {
+            allTasks.add(allTasks.poll());
         }
     }
 

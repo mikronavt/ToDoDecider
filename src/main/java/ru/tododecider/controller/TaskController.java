@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.tododecider.model.Task;
 import ru.tododecider.model.TaskDecider;
 
@@ -38,14 +35,34 @@ public class TaskController {
             return "tasks/new";
         }
         taskDecider.addTask(task);
-        return "redirect:/tasks";
+        return "redirect:/tasks/top";
     }
 
     @GetMapping("/top")
     public String getTopTask(Model model){
+        if(taskDecider.noTasks()) {
+            return "redirect:/tasks";
+        }
         model.addAttribute("task", taskDecider.getTopTask());
         return "tasks/top";
     }
 
+    @PostMapping("/execute")
+    public String executeTopTask(){
+        taskDecider.executeTopTask();
+        return "redirect:/tasks/top";
+    }
+
+    @PostMapping("/cancel")
+    public String cancelTopTask(){
+        taskDecider.cancelTopTask();
+        return "redirect:/tasks/top";
+    }
+
+    @PostMapping("/postpone")
+    public String postponeTopTask(){
+        taskDecider.postponeTopTask();
+        return "redirect:/tasks/top";
+    }
 
 }

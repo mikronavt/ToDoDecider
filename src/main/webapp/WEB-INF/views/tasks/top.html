@@ -8,6 +8,15 @@
   <div>
     <p th:text="${task.getName()}">VALUE</p>
   </div>
+  <form th:method="POST" th:action="@{/tasks/execute}">
+      <input type="submit" value="Execute task">
+  </form>
+  <form th:method="POST" th:action="@{/tasks/cancel}">
+      <input type="submit" value="Cancel task">
+  </form>
+  <form th:method="POST" th:action="@{/tasks/postpone}">
+      <input type="submit" value="Postpone task">
+  </form>
   <div>
       <a href="/tasks/new">Create new task</a>
   </div>
