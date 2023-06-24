@@ -1,8 +1,11 @@
 package ru.tododecider;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Getter
 public class Task implements Comparable<Task>{
     private String name;
     private String description;
@@ -10,6 +13,7 @@ public class Task implements Comparable<Task>{
     private int complexity; //or enum?
     private LocalDateTime dateUntil;
     private LocalDateTime dateSince;
+    private LocalDateTime lockedByTime; // если указанное время не наступила, задача скипается автоматически
     private int postponed;
     private String theme; //or enum?
     private String comments;
@@ -31,9 +35,5 @@ public class Task implements Comparable<Task>{
     @Override
     public int compareTo(Task t) {
         return this.priority - t.priority;
-    }
-
-    public String getName() {
-        return name;
     }
 }
