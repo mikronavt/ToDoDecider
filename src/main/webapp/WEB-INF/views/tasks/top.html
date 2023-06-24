@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Top task</title>
+</head>
+<body>
+  <div>
+    <p th:text="${task.getName()}">VALUE</p>
+  </div>
+  <div>
+      <a href="/tasks/new">Create new task</a>
+  </div>
+</body>
+</html>

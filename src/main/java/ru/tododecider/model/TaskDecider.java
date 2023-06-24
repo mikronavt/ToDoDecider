@@ -1,10 +1,14 @@
 package ru.tododecider.model;
 
+import org.springframework.stereotype.Component;
+
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+@Component
 public class TaskDecider {
     private Queue<Task> allTasks = new PriorityQueue<>(); // or queue? or set?
+
 
     public Task getTopTask(){
         return allTasks.peek();
