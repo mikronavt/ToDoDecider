@@ -6,9 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 @Getter
 public class Task implements Comparable<Task>{
@@ -28,17 +31,22 @@ public class Task implements Comparable<Task>{
     private int randomIndex;
     private Task lockedBy;// добавить логику что если задача заблокирована, то вместо нее автоматом выплывает локер
     private int priority;
+    @Setter
+    private int waiting;
 
-    public Task(String name) {
-        this.name = name;
-    }
+
+//    public Task(String name) {
+//
+//        this.name = name;
+//    }
 
     public Task() {
-
+        waiting = 0;
+        updatePriority();
     }
 
     public void updatePriority(){
-        priority = 0;
+        priority = PriorityLogic.useWaitingInPriority().applyAsInt(waiting);
     }
 
 
